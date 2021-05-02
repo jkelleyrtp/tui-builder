@@ -34,7 +34,7 @@ pub trait TuiApp {
 
     fn should_quit(&self) -> bool;
 
-    fn launch(&mut self) -> Result<()> {
+    fn launch(&mut self, tick_rate: u64) -> Result<()> {
         enable_raw_mode()?;
 
         let mut stdout = std::io::stdout();
@@ -46,7 +46,7 @@ pub trait TuiApp {
         // Setup input handling
         let (tx, rx) = mpsc::channel();
 
-        let tick_rate = Duration::from_millis(250);
+        let tick_rate = Duration::from_millis(tick_rate);
         thread::spawn(move || {
             let mut last_tick = Instant::now();
             loop {

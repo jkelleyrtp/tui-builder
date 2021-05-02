@@ -84,7 +84,7 @@ impl TuiApp for AppState {
 fn main() {
     let mut state = AppState {};
 
-    state.launch().unwrap();
+    state.launch(250).unwrap();
     // // Override the state implementation (normally defaults to state default)
     // TuiBuilder::<AppState>::with_state(state)
     //     // Set some options on the TuiApp
